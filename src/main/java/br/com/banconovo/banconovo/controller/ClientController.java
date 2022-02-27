@@ -1,21 +1,26 @@
 package br.com.banconovo.banconovo.controller;
 
 import br.com.banconovo.banconovo.model.DefaultClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.banconovo.banconovo.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController@RequestMapping("/clientes")
 public class ClientController {
 
+  @Autowired
+  private ClientRepository clientRepository;
+
   @GetMapping
-  public String listClients(){
-    return "All Clients here";
+  public Iterable<DefaultClient> listClients(){
+    return clientRepository.findAll();
   }
 
-  @PostMapping
-  public DefaultClient includeClient(DefaultClient newClient) {
-    return newClient;
+  @PostMapping@ResponseStatus(HttpStatus.CREATED)
+  public DefaultClient includeClient(@RequestBody DefaultClient newClient) {
+     return clientRepository.save(newClient);
   }
 }
