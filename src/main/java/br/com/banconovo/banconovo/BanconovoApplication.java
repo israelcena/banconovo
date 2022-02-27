@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class BanconovoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BanconovoApplication.class, args);
 	}
-
 }
