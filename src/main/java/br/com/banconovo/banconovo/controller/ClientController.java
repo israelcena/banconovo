@@ -1,5 +1,6 @@
 package br.com.banconovo.banconovo.controller;
 
+import br.com.banconovo.banconovo.dto.ResponseClient;
 import br.com.banconovo.banconovo.model.DefaultClient;
 import br.com.banconovo.banconovo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class ClientController {
   private ClientRepository clientRepository;
 
   @GetMapping
-  public Iterable<DefaultClient> listClients(){
-    return clientRepository.findAll();
+  public Iterable<ResponseClient> listClients(){
+    return ResponseClient.toResponse(clientRepository.findAll());
   }
 
   @PostMapping@ResponseStatus(HttpStatus.CREATED)
