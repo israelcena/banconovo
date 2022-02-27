@@ -5,9 +5,11 @@ import br.com.banconovo.banconovo.model.DefaultClient;
 import br.com.banconovo.banconovo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
 
 @RestController@RequestMapping("/clientes")
 public class ClientController {
@@ -21,7 +23,14 @@ public class ClientController {
   }
 
   @PostMapping@ResponseStatus(HttpStatus.CREATED)
-  public DefaultClient includeClient(@RequestBody DefaultClient newClient) {
-     return clientRepository.save(newClient);
+  public ResponseEntity<ResponseClient> handleCreateClient(@RequestBody DefaultClient defaultClient, UriComponentsBuilder uriComponentsBuilder){
+    clientRepository.save(defaultClient);
+    URI uri = uriComponentsBuilder.path("/cliente/{id}").buildAndExpand(defaultClient.getId()).toUri();
+    return ResponseEntity.created(uri).body(new ResponseClient(defaultClient));
   }
+//
+//  @GetMapping("/{id}")
+//  public ResponseEntity<ResponseClient> detailClient(@PathVariable UUID id) throws Exception {
+//    return ResponseEntity.ok(new ResponseClient(clientRepository.findById(id)));
+//  }
 }
