@@ -34,4 +34,10 @@ public class ClientController {
   public ResponseEntity<ResponseClient> detailClient(@PathVariable UUID id) throws Exception {
     return ResponseEntity.ok(new ResponseClient(clientRepository.findClientById(id)));
   }
+
+  @DeleteMapping("/{id}")@ResponseStatus(HttpStatus.OK)
+  public ResponseEntity deleteThisClient (@PathVariable UUID id) throws Exception{
+    clientRepository.deleteById(id);
+    return ResponseEntity.ok().build();
+  }
 }

@@ -10,4 +10,7 @@ import java.util.UUID;
 public interface ClientRepository extends CrudRepository<DefaultClient, UUID> {
   List<DefaultClient> findByName(String name);
   DefaultClient findClientById(UUID id);
+
+  @Override
+  void deleteById(UUID uuid);
 }
