@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController@RequestMapping("/clientes")
 public class ClientController {
@@ -23,14 +24,14 @@ public class ClientController {
   }
 
   @PostMapping@ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<ResponseClient> handleCreateClient(@RequestBody DefaultClient defaultClient, UriComponentsBuilder uriComponentsBuilder){
+  public ResponseEntity<ResponseClient> handlerCreateClient(@RequestBody DefaultClient defaultClient, UriComponentsBuilder uriComponentsBuilder){
     clientRepository.save(defaultClient);
     URI uri = uriComponentsBuilder.path("/cliente/{id}").buildAndExpand(defaultClient.getId()).toUri();
     return ResponseEntity.created(uri).body(new ResponseClient(defaultClient));
   }
-//
-//  @GetMapping("/{id}")
-//  public ResponseEntity<ResponseClient> detailClient(@PathVariable UUID id) throws Exception {
-//    return ResponseEntity.ok(new ResponseClient(clientRepository.findById(id)));
-//  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<ResponseClient> detailClient(@PathVariable UUID id) throws Exception {
+    return ResponseEntity.ok(new ResponseClient(clientRepository.findClientById(id)));
+  }
 }
