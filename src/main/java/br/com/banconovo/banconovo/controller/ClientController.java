@@ -26,7 +26,7 @@ public class ClientController {
   @PostMapping@ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<ResponseClient> handlerCreateClient(@RequestBody DefaultClient defaultClient, UriComponentsBuilder uriComponentsBuilder){
     clientRepository.save(defaultClient);
-    URI uri = uriComponentsBuilder.path("/cliente/{id}").buildAndExpand(defaultClient.getId()).toUri();
+    URI uri = uriComponentsBuilder.path("/clientes/{id}").buildAndExpand(defaultClient.getId()).toUri();
     return ResponseEntity.created(uri).body(new ResponseClient(defaultClient));
   }
 
