@@ -15,5 +15,4 @@ public class NumContaValidator implements ConstraintValidator<NumConta, String> 
     return false;
   }
 
-
 }
