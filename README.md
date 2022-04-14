@@ -4,7 +4,7 @@
 __This project is only for show examples for use all springboot sources!__ 
 
 ### ⚙ This project uses (at least so far)
-- [Java](https://en.wikipedia.org/wiki/Java_version_history) ![Version](https://img.shields.io/badge/Version-11-red?style=flat-square)
+- [Java](https://en.wikipedia.org/wiki/Java_version_history) ![Version](https://img.shields.io/badge/Version-11-blueviolet?style=flat-square)
 - [Spring Framework](https://spring.io/) ![Version](https://img.shields.io/badge/Version-2.6.4-green?style=flat-square)
 - [JUnit](https://junit.org/junit5/) ![Version](https://img.shields.io/badge/Version-5-9cf?style=flat-square)
 - [H2 DB with Hibernate ORM](https://junit.org/junit5/)
